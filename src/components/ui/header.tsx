@@ -4,8 +4,9 @@ import {
   HomeIcon,
   ListOrderedIcon,
   LogInIcon,
+  LogOutIcon,
   MenuIcon,
-  PercentCircleIcon,
+  PercentIcon,
   ShoppingCartIcon,
 } from "lucide-react";
 import { Button } from "./button";
@@ -16,20 +17,22 @@ import {
   SheetContent,
   SheetHeader,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "./sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Avatar, AvatarImage } from "./avatar";
+import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
+import Cart from "./cart";
 
 const Header = () => {
   const { status, data } = useSession();
 
-  const handlerLoginClick = async () => {
+  const handleLoginClick = async () => {
     await signIn();
   };
 
-  const handlerLogoutClick = async () => {
+  const handleLogoutClick = async () => {
     await signOut();
   };
 
@@ -63,14 +66,15 @@ const Header = () => {
                   <p className="text-sm opacity-75">Boas compras!</p>
                 </div>
               </div>
+
               <Separator />
             </div>
           )}
 
-          <div className="mt-4 flex flex-col gap-3">
+          <div className="mt-4 flex flex-col gap-2">
             {status === "unauthenticated" && (
               <Button
-                onClick={handlerLoginClick}
+                onClick={handleLoginClick}
                 variant="outline"
                 className="w-full justify-start gap-2"
               >
@@ -81,24 +85,38 @@ const Header = () => {
 
             {status === "authenticated" && (
               <Button
-                onClick={handlerLogoutClick}
+                onClick={handleLogoutClick}
                 variant="outline"
                 className="w-full justify-start gap-2"
               >
-                <LogInIcon size={16} />
+                <LogOutIcon size={16} />
                 Fazer Logout
               </Button>
             )}
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <HomeIcon size={16} />
-              Inicio
-            </Button>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <HomeIcon size={16} />
+                  Início
+                </Button>
+              </Link>
+            </SheetClose>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <PercentCircleIcon size={16} />
-              Ofertas
-            </Button>
+            <SheetClose asChild>
+              <Link href="/deals">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <PercentIcon size={16} />
+                  Ofertas
+                </Button>
+              </Link>
+            </SheetClose>
 
             <SheetClose asChild>
               <Link href="/catalog">
@@ -114,16 +132,24 @@ const Header = () => {
           </div>
         </SheetContent>
       </Sheet>
-      
+
       <Link href="/">
-        <h1 className="tex-lg font-semibold">
+        <h1 className="text-lg font-semibold">
           <span className="text-primary">FSW</span> Store
         </h1>
       </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent className="w-[350px]">
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
