@@ -23,7 +23,7 @@ import { Avatar, AvatarImage } from "./avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
-import Cart from "./cart";
+
 
 const Header = () => {
   const { status, data } = useSession();
@@ -147,7 +147,6 @@ const Header = () => {
         </SheetTrigger>
 
         <SheetContent className="w-[350px]">
-          <Cart />
         </SheetContent>
       </Sheet>
     </Card>
