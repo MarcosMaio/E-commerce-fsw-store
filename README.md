@@ -1,6 +1,6 @@
 # E-commerce-fsw-store 💻
 
-Bem-vindo ao repositório oficial do e-commerce desenvolvido durante o evento da Full Stack Week, o objetivo principal foi criar um projeto altamente relevante utilizando as tecnologias mais modernas e demandadas pelo mercado.
+E-commerce desenvolvido durante o evento da Full Stack Week, o objetivo principal foi criar um projeto altamente relevante utilizando as tecnologias mais modernas e demandadas pelo mercado.
 
 ## Tecnologias Utilizadas 🚀
 
