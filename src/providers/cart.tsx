@@ -44,14 +44,12 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("@fsw-store/cart-products", JSON.stringify(products));
   }, [products]);
 
-  // Total sem descontos
   const subtotal = useMemo(() => {
     return products.reduce((acc, product) => {
       return acc + Number(product.basePrice) * product.quantity;
     }, 0);
   }, [products]);
 
-  // Total com descontos
   const total = useMemo(() => {
     return products.reduce((acc, product) => {
       return acc + product.totalPrice * product.quantity;
@@ -61,7 +59,6 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
   const totalDiscount = subtotal - total;
 
   const addProductToCart = (product: CartProduct) => {
-    // se o produto já estiver no carrinho, apenas aumente a sua quantidade
     const productIsAlreadyOnCart = products.some(
       (cartProduct) => cartProduct.id === product.id,
     );
@@ -83,7 +80,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    // se não, adicione o produto à lista
+
     setProducts((prev) => [...prev, product]);
   };
 

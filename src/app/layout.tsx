@@ -22,14 +22,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <div className="mx-auto w-full max-w-[65rem]">
-            <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col" >
+            <div className="mx-auto w-full max-w-[65rem]" >
               <CartProvider>
                 <Header />
                 <div className="flex-1">{children}</div>
-                <Footer />
+                
               </CartProvider>
             </div>
+            <Footer />
           </div>
         </AuthProvider>
       </body>

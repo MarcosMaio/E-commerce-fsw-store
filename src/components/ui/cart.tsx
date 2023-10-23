@@ -21,7 +21,6 @@ const Cart = () => {
         Carrinho
       </Badge>
 
-      {/* RENDERIZAR OS PRODUTOS */}
       <div className="flex h-full max-h-full flex-col gap-5 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="flex h-full flex-col gap-8">
