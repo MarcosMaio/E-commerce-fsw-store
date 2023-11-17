@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
@@ -13,7 +13,6 @@ interface ProductInfoProps {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
 
-
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
   };
@@ -21,7 +20,6 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   const handleIncreaseQuantityClick = () => {
     setQuantity((prev) => prev + 1);
   };
-
 
   return (
     <div className="flex flex-col px-5">
@@ -47,8 +45,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           size="icon"
           variant="outline"
           onClick={handleDecreaseQuantityClick}
+          className={`${quantity === 1 ? "cursor-not-allowed" : ""}`}
         >
-          <ArrowLeftIcon size={16} />
+          <ArrowLeftIcon
+            className={`${quantity === 1 ? "opacity-50" : ""}`}
+            size={16}
+          />
         </Button>
 
         <span>{quantity}</span>
@@ -67,9 +69,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         <p className="text-justify text-sm opacity-60">{product.description}</p>
       </div>
 
-      <Button
-        className="mt-8 font-bold uppercase"
-      >
+      <Button className="mt-8 font-bold uppercase">
         Adicionar ao carrinho
       </Button>
 

@@ -7,7 +7,6 @@ interface ProductImagesProps {
   name: string;
   imageUrls: string[];
 }
-
 const ProductImages = ({ imageUrls, name }: ProductImagesProps) => {
   const [currentImage, setCurrentImage] = useState(imageUrls[0]);
 
