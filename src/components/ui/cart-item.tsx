@@ -1,7 +1,7 @@
 import { CartContext, CartProduct } from "@/providers/cart";
 import Image from "next/image";
 import { Button } from "./button";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 import { useContext } from "react";
 
 interface CartItemProps {
@@ -9,8 +9,11 @@ interface CartItemProps {
 }
 
 const CartItem = ({ product }: CartItemProps) => {
-  const { decreaseProductQuantity, IncreaseProductQuantity } =
-    useContext(CartContext);
+  const {
+    decreaseProductQuantity,
+    IncreaseProductQuantity,
+    removeProductFromCart,
+  } = useContext(CartContext);
 
   const handlerDecreaseProductQuantityClick = () => {
     decreaseProductQuantity(product.id);
@@ -18,6 +21,10 @@ const CartItem = ({ product }: CartItemProps) => {
 
   const handlerIncreaseProductQuantityClick = () => {
     IncreaseProductQuantity(product.id);
+  };
+
+  const handlerRemoveProductOnClick = () => {
+    removeProductFromCart(product.id);
   };
 
   return (
@@ -71,7 +78,13 @@ const CartItem = ({ product }: CartItemProps) => {
         </div>
       </div>
 
-      <div></div>
+      <Button
+        size="icon"
+        variant="outline"
+        onClick={handlerRemoveProductOnClick}
+      >
+        <TrashIcon size={16} />
+      </Button>
     </div>
   );
 };
