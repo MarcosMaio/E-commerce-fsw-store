@@ -51,30 +51,32 @@ const Cart = () => {
         </ScrollArea>
       </div>
 
-      <div className="flex flex-col gap-3">
-        <Separator />
+      {products.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <Separator />
 
-        <CartInfo text={"Subtotal"} price={subtotal.toFixed(2)} />
+          <CartInfo text={"Subtotal"} price={subtotal.toFixed(2)} />
 
-        <Separator />
+          <Separator />
 
-        <CartInfo text={"Entrega"} />
+          <CartInfo text={"Entrega"} />
 
-        <Separator />
+          <Separator />
 
-        <CartInfo text={"Descontos"} price={-totalDiscount.toFixed(2)} />
+          <CartInfo text={"Descontos"} price={-totalDiscount.toFixed(2)} />
 
-        <Separator />
+          <Separator />
 
-        <CartInfo text={"Total"} price={total.toFixed(2)} />
+          <CartInfo text={"Total"} price={total.toFixed(2)} />
 
-        <Button
-          className="mt-7 font-bold uppercase"
-          onClick={handlerFinishPurchaseClick}
-        >
-          Finalizar compra
-        </Button>
-      </div>
+          <Button
+            className="mt-7 font-bold uppercase"
+            onClick={handlerFinishPurchaseClick}
+          >
+            Finalizar compra
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
